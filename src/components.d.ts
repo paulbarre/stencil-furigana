@@ -10,6 +10,9 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
+  interface HFurigana {
+    'value': string;
+  }
   interface MyComponent {
     /**
     * The first name
@@ -29,17 +32,27 @@ export namespace Components {
 declare global {
 
 
+  interface HTMLHFuriganaElement extends Components.HFurigana, HTMLStencilElement {}
+  var HTMLHFuriganaElement: {
+    prototype: HTMLHFuriganaElement;
+    new (): HTMLHFuriganaElement;
+  };
+
   interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
   var HTMLMyComponentElement: {
     prototype: HTMLMyComponentElement;
     new (): HTMLMyComponentElement;
   };
   interface HTMLElementTagNameMap {
+    'h-furigana': HTMLHFuriganaElement;
     'my-component': HTMLMyComponentElement;
   }
 }
 
 declare namespace LocalJSX {
+  interface HFurigana {
+    'value'?: string;
+  }
   interface MyComponent {
     /**
     * The first name
@@ -56,6 +69,7 @@ declare namespace LocalJSX {
   }
 
   interface IntrinsicElements {
+    'h-furigana': HFurigana;
     'my-component': MyComponent;
   }
 }
@@ -66,6 +80,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
+      'h-furigana': LocalJSX.HFurigana & JSXBase.HTMLAttributes<HTMLHFuriganaElement>;
       'my-component': LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
     }
   }
