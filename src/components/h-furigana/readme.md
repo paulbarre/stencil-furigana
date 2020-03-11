@@ -1,7 +1,17 @@
 # h-furigana
 
+
+
+<!-- Auto Generated Below -->
+
+
 ## Properties
 
-| Property | Description          | Type     | Default     |
-| -------- | -------------------- | -------- | ----------- |
-| `value`  | Japanese to display  | `string` | `undefined` |
+| Property | Attribute | Description | Type     | Default     |
+| -------- | --------- | ----------- | -------- | ----------- |
+| `value`  | `value`   |             | `string` | `undefined` |
+
+
+----------------------------------------------
+
+*Built with [StencilJS](https://stenciljs.com/)*
