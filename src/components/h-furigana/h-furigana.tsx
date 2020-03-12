@@ -8,9 +8,13 @@ export class HFurigana {
   @Prop() value: string;
 
   private getFormat(): string {
-    
-    return this.value?.replace(/([^\s\[]+)\[([^\]]+)\]/g, '<ruby>$1<rp>(</rp><rt>$2</rt><rp>)</rp></ruby>')
-      .replace(' ', '') ?? ''
+    return this.value?.replace(/\s*([^\s\[\]]+)(\[([^\]]+)\])?\s*/g, (_match, p1, _p2, p3) => {
+      if (!p3) {
+        return p1
+      } else {
+        return `<ruby>${p1}<rp>(</rp><rt>${p3}</rt><rp>)</rp></ruby>`
+      }
+    })
   }
 
   render() {
