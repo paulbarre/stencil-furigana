@@ -11,6 +11,9 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 export namespace Components {
   interface HFurigana {
+    /**
+    * Japanese to display
+    */
     'value': string;
   }
 }
@@ -30,6 +33,9 @@ declare global {
 
 declare namespace LocalJSX {
   interface HFurigana {
+    /**
+    * Japanese to display
+    */
     'value'?: string;
   }
 

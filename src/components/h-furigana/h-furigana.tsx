@@ -5,6 +5,9 @@ import { Component, Prop, h } from '@stencil/core'
   shadow: true
 })
 export class HFurigana {
+  /**
+   * Japanese to display
+   */
   @Prop() value: string;
 
   private getFormat(): string {
