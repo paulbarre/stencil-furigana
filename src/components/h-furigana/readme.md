@@ -2,7 +2,7 @@
 
 ## What it does
 
-This component will be a `<ruby>` tag from a simple string.
+This component compiles a `<ruby>` tag from a simple string.
 
 ## How to use
 
