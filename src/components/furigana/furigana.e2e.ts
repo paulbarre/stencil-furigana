@@ -1,41 +1,45 @@
 import { newE2EPage } from '@stencil/core/testing'
 
-describe('h-furigana', () => {
+describe('wc-furigana', () => {
   it('renders', async () => {
     const page = await newE2EPage();
   
-    await page.setContent('<h-furigana></h-furigana>')
-    const element = await page.find('h-furigana')
+    await page.setContent('<wc-furigana></wc-furigana>')
+    const element = await page.find('wc-furigana')
     expect(element).toHaveClass('hydrated')
   })
 
-  it('renders changes to the name data', async () => {
+  it('renders text', async () => {
     const page = await newE2EPage()
 
-    await page.setContent('<h-furigana></h-furigana>')
-    const component = await page.find('h-furigana')
-    const element = await page.find('h-furigana >>> span')
-    expect(element.textContent).toEqual(``)
-
-    component.setProperty('value', '漢字')
-    await page.waitForChanges()
-    expect(element.textContent).toEqual(`漢字`)
-
-    component.setProperty('value', '漢[かん]字[じ]')
-    await page.waitForChanges()
-    expect(element.textContent).toEqual(`漢(かん)字(じ)`)
+    await page.setContent('<wc-furigana>a b[1]  c[2]</wc-furigana>')
+    let element = await page.find('wc-furigana >>> span')
+    expect(element.textContent).toEqual(`ab(1) c(2)`)
     expect(element).toEqualHtml(`
       <span>
-        <ruby>漢<rp>(</rp><rt>かん</rt><rp>)</rp></ruby>
-        <ruby>字<rp>(</rp><rt>じ</rt><rp>)</rp></ruby>
+        a<ruby>b<rp>(</rp><rt>1</rt><rp>)</rp></ruby> 
+        <ruby>c<rp>(</rp><rt>2</rt><rp>)</rp></ruby>
       </span`)
+  })
 
-    component.setProperty('value', 'フランス 人[じん]')
-    await page.waitForChanges()
-    expect(element.textContent).toEqual(`フランス人(じん)`)
+  it('renders html', async () => {
+    const page = await newE2EPage()
+
+    await page.setContent(`
+      <wc-furigana>
+        <ul>
+          <li>a[0]</li>
+          <li>b[1]</li>
+        </ul>
+      </wc-furigana>
+    `)
+    const element = await page.find('wc-furigana >>> span')
     expect(element).toEqualHtml(`
-      <span>フランス
-        <ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>
+      <span>
+        <ul>
+          <li><ruby>a<rp>(</rp><rt>0</rt><rp>)</rp></ruby></li>
+          <li><ruby>b<rp>(</rp><rt>1</rt><rp>)</rp></ruby></li>
+        </ul>
       </span`)
   })
 })

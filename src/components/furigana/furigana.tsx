@@ -22,22 +22,6 @@ export class HFurigana {
     })
   }
 
-  componentWillLoad () {
-    console.log('componentWillLoad')
-  }
-
-  componentWillUpdate () {
-    console.log('componentWillUpdate')
-  }
-
-  componentDidLoad () {
-    console.log('componentDidLoad')
-  }
-
-  componentDidUpdate () {
-    console.log('componentDidUpdate')
-  }
-
   render() {
     return <span innerHTML={ this.format(this.el.innerHTML) } />
   }
