@@ -1,7 +1,20 @@
 {
   "name": "@paulbarre/wc-furigana",
-  "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "version": "1.0.0",
+  "author": "Paul Barré <contact@paulbarre.co>",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/paulbarre/stencil-furigana"
+	},
+  "description": "Web component to display easily japanese with furigana",
+  "keywords": [
+    "web component",
+    "custom component",
+    "stencil",
+    "japanese",
+    "kanji",
+    "furigana"
+  ],
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "es2015": "dist/esm/index.mjs",
