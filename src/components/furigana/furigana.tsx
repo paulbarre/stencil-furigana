@@ -1,7 +1,7 @@
 import { Component, h, Element } from '@stencil/core'
 
 @Component({
-  tag: 'h-furigana',
+  tag: 'wc-furigana',
   shadow: true
 })
 export class HFurigana {
