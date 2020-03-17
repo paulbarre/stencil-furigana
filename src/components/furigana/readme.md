@@ -54,6 +54,13 @@ Above example will output :
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property | Attribute | Description         | Type     | Default     |
+| -------- | --------- | ------------------- | -------- | ----------- |
+| `value`  | `value`   | Japanese to display | `string` | `undefined` |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

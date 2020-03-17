@@ -1,4 +1,4 @@
-import { Component, h, Element } from '@stencil/core'
+import { Component, Prop, h } from '@stencil/core'
 
 @Component({
   tag: 'wc-furigana',
@@ -6,23 +6,24 @@ import { Component, h, Element } from '@stencil/core'
 })
 export class HFurigana {
 
-  @Element() el: HTMLElement;
+  /**
+   * Japanese to display
+   */
+  @Prop() value: string
 
   private format(source: string): string {
     return source.replace(
-      /(\s*<[^<>]*>\s*|(\s?([^\s\[\]<>]+)(\[([^\]\[]+)\])?))/gm,
-      (_match, p1, p2, p3, _p4, p5) => {
+      /\s?([^\s\[\]<>]+)(\[([^\]\[]+)\])?/g,
+      (_match, p1, p2, p3) => {
         if (!p2) {
           return p1
-        } else if (!p5) {
-          return p3
         } else {
-          return `<ruby>${p3}<rp>(</rp><rt>${p5}</rt><rp>)</rp></ruby>`
+          return `<ruby>${p1}<rp>(</rp><rt>${p3}</rt><rp>)</rp></ruby>`
         }
     })
   }
 
   render() {
-    return <span innerHTML={ this.format(this.el.innerHTML) } />
+    return <span innerHTML={ this.format(this.value ?? '') } />
   }
 }

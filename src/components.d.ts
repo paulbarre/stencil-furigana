@@ -10,7 +10,12 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-  interface WcFurigana {}
+  interface WcFurigana {
+    /**
+    * Japanese to display
+    */
+    'value': string;
+  }
 }
 
 declare global {
@@ -27,7 +32,12 @@ declare global {
 }
 
 declare namespace LocalJSX {
-  interface WcFurigana {}
+  interface WcFurigana {
+    /**
+    * Japanese to display
+    */
+    'value'?: string;
+  }
 
   interface IntrinsicElements {
     'wc-furigana': WcFurigana;
