@@ -22,7 +22,7 @@ In HTML if you want to display <ruby>漢<rp>(</rp><rt>かん</rt><rp>)</rp></rub
 With Furigana Web Component, things become easy:
 
 ```html
-<wc-furigana>漢[かん]字[じ]</wc-furigana>
+<wc-furigana value="漢[かん]字[じ]" />
 ```
 
 Check out how to use the component in details here: [Furigana](/src/components/furigana/readme.md).
@@ -32,13 +32,12 @@ Check out how to use the component in details here: [Furigana](/src/components/f
 1. Write furigana inside square brackets: `桜[さくら]`.
 2. Spaces will indicate which characters the furigana are above: `私[わたし]はフランス 人[じん]です。`.
 3. Double spaces if you want to display a space character: `一  二  三`.
-4. You can put html inside `wc-furigana` tag.
 
 ## Framework integrations
 
 > **Note** <br> The following applies the support for IE11, see below if you don't care about it.
 
-**Vue**
+### Vue
 
 The following consider an application created with [Vue CLI](https://cli.vuejs.org/guide/creating-a-project.html).
 
@@ -67,7 +66,7 @@ applyPolyfills().then(() => {
 
 > If the above doesn't work, check out [Stencil documentation about integration into a Vue app](hhttps://stenciljs.com/docs/vue).
 
-**Angular**
+### Angular
 
 The following consider an application created with [Angular CLI](https://angular.io/guide/setup-local#step-2-create-a-workspace-and-initial-application).
 
@@ -108,7 +107,7 @@ applyPolyfills().then(() => {
 
 > If the above doesn't work, check out [Stencil documentation about integration into an Angular app](https://stenciljs.com/docs/angular).
 
-**React**
+### React
 
 The following consider an application created with [Create React App](https://reactjs.org/docs/create-a-new-react-app.html#create-react-app).
 
@@ -132,7 +131,7 @@ applyPolyfills().then(() => {
 
 > If the above doesn't work, check out [Stencil documentation about integration into a React app](https://stenciljs.com/docs/react).
 
-**I don't care about IE11**
+### I don't care about IE11
 
 If you don't need to support IE11, no need to apply Polyfills:
 
@@ -141,7 +140,7 @@ import { defineCustomElements } from '@paulbarre/wc-furigana/loader'
 defineCustomElements(window)
 ```
 
-**JavaScript**
+### I don't use a framework
 
 Adding the Web Component into a single file without any framework is also possible
 
@@ -149,11 +148,11 @@ Adding the Web Component into a single file without any framework is also possib
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script module src="https://unpkg.com/@paulbarre/wc-furigana/latest/dist/furigana.esm.js"></script>
-  <script nomodule src="https://unpkg.com/@paulbarre/wc-furigana/latest/dist/furigana.js"></script>
+  <script type="module" src="https://unpkg.com/@paulbarre/wc-furigana/latest/dist/furigana/furigana.esm.js"></script>
+  <script nomodule src="https://unpkg.com/@paulbarre/wc-furigana/latest/dist/furigana/furigana.js"></script>
 </head>
 <body>
-  <wc-furigana>漢[かん]字[じ]</wc-furigana>
+  <wc-furigana value="漢[かん]字[じ]" />
 </body>
 </html>
 ```
