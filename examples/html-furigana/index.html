@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>html-furigana</title>
+  <script type="module" src="https://unpkg.com/@paulbarre/wc-furigana/latest/dist/furigana/furigana.esm.js"></script>
+  <script nomodule src="https://unpkg.com/@paulbarre/wc-furigana/latest/dist/furigana/furigana.js"></script>
+  <style>
+    button {
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <img alt="HTML5 logo" src="./logo.png">
+  <h1>
+    <wc-furigana id="furigana" value="秋[あき]の 田[た]の　　かりほの 庵[いほ]の　　苫[とま]をあらみ" />
+  </h1>
+  <div>
+    <button onClick="changeText()">Change text</button>
+  </div>
+  <script>
+    const furigana = document.getElementById('furigana')
+    let alt = 'わが 衣手[ころもで]は　　露[つゆ]にぬれつつ'
+    function changeText() {
+      const temp = furigana.value
+      furigana.value = alt
+      alt = temp
+    }
+  </script>
+</body>
+</html>
