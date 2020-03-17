@@ -66,7 +66,7 @@ applyPolyfills().then(() => {
 
 3. Add a `wc-furigana` to `App.vue` to see if the component is correctly loaded
 
-> If the above doesn't work, check out [Stencil documentation about integration into a Vue app](hhttps://stenciljs.com/docs/vue).
+> If the above doesn't work, check out [Stencil documentation about integration into a Vue app](https://stenciljs.com/docs/vue).
 
 ### Angular
 
