@@ -1,45 +1,60 @@
 import { newE2EPage } from '@stencil/core/testing'
 
+async function setupTest(value: string) {
+  const page = await newE2EPage()
+
+  await page.setContent('<wc-furigana></wc-furigana>')
+  const component = await page.find('wc-furigana')
+  component.setProperty('value', value)
+  await page.waitForChanges()
+  
+  return await page.find('wc-furigana >>> span')
+}
+
 describe('wc-furigana', () => {
   it('renders', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage()
   
     await page.setContent('<wc-furigana></wc-furigana>')
     const element = await page.find('wc-furigana')
     expect(element).toHaveClass('hydrated')
   })
 
-  it('renders text', async () => {
-    const page = await newE2EPage()
-
-    await page.setContent('<wc-furigana>a b[1]  c[2]</wc-furigana>')
-    let element = await page.find('wc-furigana >>> span')
-    expect(element.textContent).toEqual(`ab(1) c(2)`)
+  it('renders changes to the value data', async () => {
+    const element = await setupTest('漢字[かんじ]')
+    expect(element.textContent).toEqual(`漢字(かんじ)`)
     expect(element).toEqualHtml(`
       <span>
-        a<ruby>b<rp>(</rp><rt>1</rt><rp>)</rp></ruby> 
-        <ruby>c<rp>(</rp><rt>2</rt><rp>)</rp></ruby>
+        <ruby>漢字<rp>(</rp><rt>かんじ</rt><rp>)</rp></ruby>
       </span`)
   })
-
-  it('renders html', async () => {
-    const page = await newE2EPage()
-
-    await page.setContent(`
-      <wc-furigana>
-        <ul>
-          <li>a[0]</li>
-          <li>b[1]</li>
-        </ul>
-      </wc-furigana>
-    `)
-    const element = await page.find('wc-furigana >>> span')
+  
+  it('renders with multiple brackets', async () => {
+    const element = await setupTest('漢[かん]字[じ]')
+    expect(element.textContent).toEqual(`漢(かん)字(じ)`)
     expect(element).toEqualHtml(`
       <span>
-        <ul>
-          <li><ruby>a<rp>(</rp><rt>0</rt><rp>)</rp></ruby></li>
-          <li><ruby>b<rp>(</rp><rt>1</rt><rp>)</rp></ruby></li>
-        </ul>
+        <ruby>漢<rp>(</rp><rt>かん</rt><rp>)</rp></ruby>
+        <ruby>字<rp>(</rp><rt>じ</rt><rp>)</rp></ruby>
+      </span`)
+  })
+  
+  it('renders with multiple parts', async () => {
+    const element = await setupTest('フランス 人[じん]')
+    expect(element.textContent).toEqual(`フランス人(じん)`)
+    expect(element).toEqualHtml(`
+      <span>
+        フランス<ruby>人<rp>(</rp><rt>じん</rt><rp>)</rp></ruby>
+      </span`)
+  })
+    
+  it('renders spaces', async () => {
+    const element = await setupTest('空[くう]  白[はく]')
+    expect(element.textContent).toEqual(`空(くう) 白(はく)`)
+    expect(element).toEqualHtml(`
+      <span>
+        <ruby>空<rp>(</rp><rt>くう</rt><rp>)</rp></ruby> 
+        <ruby>白<rp>(</rp><rt>はく</rt><rp>)</rp></ruby>
       </span`)
   })
 })
