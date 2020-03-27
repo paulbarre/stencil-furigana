@@ -68,6 +68,35 @@ applyPolyfills().then(() => {
 
 > If the above doesn't work, check out [Stencil documentation about integration into a Vue app](https://stenciljs.com/docs/vue).
 
+### Vuepress
+
+1. Install the package
+
+```
+npm i @paulbarre/wc-furigana
+```
+
+2. If you don't have it already, create a configuration file. From root folder add a `.vuepress` subfolder and create `config.js`.
+
+3. Add headers to this configuration file.
+
+```js
+module.exports = {
+    head: [
+        ['script', {
+            type: 'module',
+            src: 'https://unpkg.com/@paulbarre/wc-furigana@latest/dist/furigana/furigana.esm.js'
+        }],
+        ['script', {
+            nomodule: true,
+            src: 'https://unpkg.com/@paulbarre/wc-furigana@latest/dist/furigana/furigana.js'
+        }]
+    ]
+}
+```
+
+> **Example** <br> You can run the example in `examples` folder with `npm run serve`.
+
 ### Angular
 
 The following consider an application created with [Angular CLI](https://angular.io/guide/setup-local#step-2-create-a-workspace-and-initial-application).
