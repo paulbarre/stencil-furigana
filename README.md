@@ -150,8 +150,8 @@ Adding the Web Component into a single file without any framework is also possib
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script type="module" src="https://unpkg.com/@paulbarre/wc-furigana/latest/dist/furigana/furigana.esm.js"></script>
-  <script nomodule src="https://unpkg.com/@paulbarre/wc-furigana/latest/dist/furigana/furigana.js"></script>
+  <script type="module" src="https://unpkg.com/@paulbarre/wc-furigana@latest/dist/furigana/furigana.esm.js"></script>
+  <script nomodule src="https://unpkg.com/@paulbarre/wc-furigana@latest/dist/furigana/furigana.js"></script>
 </head>
 <body>
   <wc-furigana value="漢[かん]字[じ]" />
